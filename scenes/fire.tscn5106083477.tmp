@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsxf7v03sixlw"]
+
+[ext_resource type="Script" uid="uid://dt54vcehkt4ew" path="res://scripts/fire.gd" id="1_52nqi"]
+[ext_resource type="Texture2D" uid="uid://c6yjbvn0gpc4f" path="res://assets/FireAnimation-1.png" id="2_g5mbl"]
+[ext_resource type="Texture2D" uid="uid://dx8gh3ylecvdu" path="res://assets/FireAnimation-2.png" id="3_rach5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5mbl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txieb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g5mbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rach5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fire" type="Area2D"]
+script = ExtResource("1_52nqi")
+base_growth_speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(36, 3)
+shape = SubResource("RectangleShape2D_g5mbl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_txieb")

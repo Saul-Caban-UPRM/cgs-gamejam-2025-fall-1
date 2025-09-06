@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxx30g6l0vc1a"]
+
+[ext_resource type="Script" uid="uid://buoxalaoq564i" path="res://scripts/fire_fighter.gd" id="1_bsqcs"]
+[ext_resource type="Texture2D" uid="uid://bpdip2li16xhw" path="res://assets/icon.svg" id="1_q8sea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsqcs"]
+size = Vector2(131, 130)
+
+[node name="FireFighter" type="CharacterBody2D"]
+script = ExtResource("1_bsqcs")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(4, -5)
+texture = ExtResource("1_q8sea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -5)
+shape = SubResource("RectangleShape2D_bsqcs")

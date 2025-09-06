@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu11u4sqio8e"]
+
+[ext_resource type="Script" uid="uid://28nuocvdave4" path="res://scenes/menu_manager.gd" id="1_q1bkd"]
+
+[node name="MenuManager" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_q1bkd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -36.0
+offset_right = 163.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="retry" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "retry"
+
+[node name="Exit Game" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Exit game
+"
+
+[connection signal="pressed" from="Control/VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
