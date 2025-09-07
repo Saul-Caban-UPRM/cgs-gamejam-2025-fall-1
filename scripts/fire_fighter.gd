@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Jump
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
+		$Jump.play()
 		velocity.y = jump_velocity
 	
 	# Move the character

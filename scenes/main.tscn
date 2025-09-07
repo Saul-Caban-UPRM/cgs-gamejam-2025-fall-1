@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b13vid3b6eote"]
+[gd_scene load_steps=10 format=3 uid="uid://b13vid3b6eote"]
 
 [ext_resource type="PackedScene" uid="uid://dxx30g6l0vc1a" path="res://scenes/fire_fighter.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bqgkbu4g3ufla" path="res://scripts/main.gd" id="1_o6xl0"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://djr1ifxy10vqj" path="res://assets/Background-Buildings.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://luqygwcw2kno" path="res://scripts/camera_control.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://xv414qrklgdl" path="res://scripts/platform_spanwer.gd" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://rkiev2t82fnn" path="res://Sounds/death.wav" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bsxf7v03sixlw" path="res://scenes/fire.tscn" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://dhh0ow0ulwoni" path="res://Sounds/EscapeTheFire.mp3" id="8_tipki"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("score_label")]
 process_mode = 1
@@ -35,19 +37,23 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -21.5
 offset_right = 21.5
-offset_bottom = 23.0
+offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="PlatformSpanwer" type="Node2D" parent="." node_paths=PackedStringArray("camera_node")]
+position = Vector2(-2, -57)
 script = ExtResource("4_jyhfs")
 platform_scene = ExtResource("2_sugp2")
 player_path = NodePath("../FireFighter")
 camera_node = NodePath("../MainCamera")
 
+[node name="Death" type="AudioStreamPlayer" parent="PlatformSpanwer" groups=["Sounds"]]
+stream = ExtResource("5_85g3d")
+
 [node name="Platform" parent="." instance=ExtResource("2_sugp2")]
-position = Vector2(372, 994)
+position = Vector2(382, 956)
 
 [node name="Fire" parent="." instance=ExtResource("6_tefeu")]
 position = Vector2(364, 1235)
@@ -63,4 +69,9 @@ position = Vector2(359, 636)
 texture = ExtResource("3_jyhfs")
 
 [node name="FireFighter" parent="." instance=ExtResource("1_0wfyh")]
-position = Vector2(368, 897)
+position = Vector2(361, 850)
+
+[node name="EscapeTheFire" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
+stream = ExtResource("8_tipki")
+volume_db = -5.0
+parameters/looping = true

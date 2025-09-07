@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dx8gh3ylecvdu" path="res://assets/FireAnimation-2.png" id="3_rach5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5mbl"]
+size = Vector2(20.2222, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_txieb"]
 animations = [{
@@ -24,10 +25,13 @@ animations = [{
 script = ExtResource("1_52nqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
 scale = Vector2(36, 3)
 shape = SubResource("RectangleShape2D_g5mbl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 0)
+scale = Vector2(1.01111, 1)
 sprite_frames = SubResource("SpriteFrames_txieb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

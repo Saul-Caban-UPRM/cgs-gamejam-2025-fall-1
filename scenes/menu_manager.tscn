@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuu11u4sqio8e"]
+[gd_scene load_steps=4 format=3 uid="uid://cuu11u4sqio8e"]
 
 [ext_resource type="Script" uid="uid://28nuocvdave4" path="res://scripts/menu_manager.gd" id="1_q1bkd"]
+[ext_resource type="Texture2D" uid="uid://b7mdb2jyo5s3t" path="res://assets/Use A or left arrow to move left Use D or right to move right.png" id="2_bh0x8"]
+[ext_resource type="AudioStream" uid="uid://yw6y0sbt2v2k" path="res://Sounds/MenuMusic.mp3" id="2_wbwtb"]
 
 [node name="MenuManager" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -39,6 +41,7 @@ text = "Exit game
 "
 
 [node name="StartingMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +71,34 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "How to play"
 
+[node name="MenuMusic" type="AudioStreamPlayer" parent="StartingMenu"]
+stream = ExtResource("2_wbwtb")
+volume_db = -10.0
+
+[node name="HowToPlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HowToPlay"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_bh0x8")
+
+[node name="Return" type="Button" parent="HowToPlay"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 36
+text = "Return
+"
+
 [connection signal="pressed" from="RetryMenu/VBoxContainer/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="RetryMenu/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
 [connection signal="pressed" from="StartingMenu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="StartingMenu/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="HowToPlay/Return" to="." method="_on_return_pressed"]

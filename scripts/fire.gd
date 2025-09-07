@@ -82,6 +82,11 @@ func _on_body_entered(body):
 		player_fell()
 
 func player_fell():
+	for node in get_tree().get_nodes_in_group("Sounds"):
+		if node != $Death:
+			node.stop()
+	$"../PlatformSpanwer/Death".play()
+	await $"../PlatformSpanwer/Death".finished
 	print("Player fell! Game Over.")
 	GlobalScript.MenuStates = "Retry"
 	GlobalScript.score = 0

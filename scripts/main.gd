@@ -5,6 +5,7 @@ extends Node2D
 func _ready() -> void:
 	# Start the async loop
 	increment_score_async()
+	$EscapeTheFire.play()
 
 # This is an async function
 func increment_score_async() -> void:
