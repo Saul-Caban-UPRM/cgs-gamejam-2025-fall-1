@@ -16,12 +16,3 @@ func increment_score_async() -> void:
 			GlobalScript.Maxscore = GlobalScript.score
 func _process(delta: float) -> void:
 	score_label.text = "Best Score: " + str(GlobalScript.Maxscore) 
-# 
-#
-#
-#
-#
-
-
-func _on_fire_hydrants_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.

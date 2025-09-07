@@ -5,27 +5,29 @@ extends Camera2D
 @export var base_offset := 550.0   # how much higher than the player’s highest Y the camera goes
 
 var player: Node2D
-var highest_y:=  0.0
-var jump_started := false   # track if the player has jumped at least once
+var highest_y := 0.0
+var jump_started := false
+
+var was_on_floor := true  # track if the player was on the floor last frame
 
 func _ready():
 	player = get_tree().root.find_child("FireFighter", true, false)
 	if not player:
 		return
-	highest_y = 500  # keep the starting camera position
+	highest_y = 500  # starting camera Y
 
 func _process(delta):
 	if not player:
 		return
 
-	# Only start tracking after first jump
+	# Detect when the player actually leaves the floor
+	if was_on_floor and not player.is_on_floor():
+		jump_started = true
+		highest_y = player.global_position.y
 
-	if Input.is_action_just_pressed("Jump"):
-		if player.global_position.y < highest_y:
-			jump_started = true
-			highest_y = player.global_position.y
+	was_on_floor = player.is_on_floor()
 
-	# If no jump yet, keep the starting position
+	# Determine target Y
 	var target_y = highest_y
 	if jump_started:
 		target_y = highest_y - base_offset
