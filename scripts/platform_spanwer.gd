@@ -8,24 +8,34 @@ extends Node2D
 @export var max_x: float = 620.0
 @export var y_spacing: float = 400.0
 @export var hydrant_chance: float = 0.3  # 30% chance per platform
+@export var starter_platform_path: NodePath
 
 var player: CharacterBody2D
 var next_spawn_y: float
 var platforms: Array = []
 var hydrants: Array = []
+var platform_count: int = 0
 
 func _ready():
 	if player_path != NodePath(""):
 		player = get_node_or_null(player_path)
 	else:
-		# fallback: try to find your player by name if not set in inspector
 		player = get_tree().root.find_child("FireFighter", true, false)
 
-	if player:
-		next_spawn_y = player.global_position.y
-	else:
+	# Get starter platform Y
+	var starter_platform_y = 0.0
+	if starter_platform_path != NodePath(""):
+		var starter_platform = get_node_or_null(starter_platform_path)
+		if starter_platform:
+			starter_platform_y = starter_platform.global_position.y
+		else:
+			push_error("Starter platform not found!")
+	
+	# Initialize next_spawn_y **y_spacing above starter platform**
+	next_spawn_y = starter_platform_y - y_spacing
+
+	if not player:
 		push_error("Player not found! Did you set 'player_path' in the Inspector?")
-		next_spawn_y = 0.0
 
 func _process(delta):
 	if not player:
@@ -39,6 +49,8 @@ func _process(delta):
 	cleanup_platforms_and_hydrants()
 
 func spawn_platform_and_hydrant(y_pos: float):
+	platform_count += 1
+
 	var x_pos = randf_range(min_x, max_x)
 
 	# Platform
@@ -47,13 +59,14 @@ func spawn_platform_and_hydrant(y_pos: float):
 	add_child(platform)
 	platforms.append(platform)
 
-	# Hydrant
-	if randi_range(0, 100) < hydrant_chance * 100:
+	# Spawn hydrant every 2 platforms
+	if platform_count % 2 == 0:
 		var hydrant = fire_hydrant_scene.instantiate()
 		var opposite_x = max_x - (x_pos - min_x)
 		hydrant.global_position = Vector2(opposite_x, y_pos - 80)
 		add_child(hydrant)
 		hydrants.append(hydrant)
+
 
 func cleanup_platforms_and_hydrants():
 	if not camera_node:

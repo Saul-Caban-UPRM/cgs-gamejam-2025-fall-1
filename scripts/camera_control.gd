@@ -12,13 +12,14 @@ func _ready():
 	player = get_tree().root.find_child("FireFighter", true, false)
 	if not player:
 		return
-	highest_y = global_position.y  # keep the starting camera position
+	highest_y = 500  # keep the starting camera position
 
 func _process(delta):
 	if not player:
 		return
 
 	# Only start tracking after first jump
+
 	if Input.is_action_just_pressed("Jump"):
 		if player.global_position.y < highest_y:
 			jump_started = true

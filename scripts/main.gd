@@ -15,7 +15,7 @@ func increment_score_async() -> void:
 		if GlobalScript.Maxscore < GlobalScript.score:
 			GlobalScript.Maxscore = GlobalScript.score
 func _process(delta: float) -> void:
-	score_label.text = "Score: " + str(GlobalScript.Maxscore) 
+	score_label.text = "Best Score: " + str(GlobalScript.Maxscore) 
 # 
 #
 #
