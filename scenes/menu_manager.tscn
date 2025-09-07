@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://cuu11u4sqio8e"]
 
-[ext_resource type="Script" uid="uid://28nuocvdave4" path="res://scenes/menu_manager.gd" id="1_q1bkd"]
+[ext_resource type="Script" uid="uid://28nuocvdave4" path="res://scripts/menu_manager.gd" id="1_q1bkd"]
 
 [node name="MenuManager" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_q1bkd")
 
-[node name="Control" type="Control" parent="."]
+[node name="RetryMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,28 +15,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RetryMenu"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -163.5
-offset_top = -36.0
-offset_right = 163.5
-offset_bottom = 36.0
+offset_top = -41.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="retry" type="Button" parent="Control/VBoxContainer"]
+[node name="retry" type="Button" parent="RetryMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "retry"
 
-[node name="Exit Game" type="Button" parent="Control/VBoxContainer"]
+[node name="Exit Game" type="Button" parent="RetryMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "Exit game
 "
 
-[connection signal="pressed" from="Control/VBoxContainer/retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[node name="StartingMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartingMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StartGame" type="Button" parent="StartingMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Start Game"
+
+[node name="HowToPlay" type="Button" parent="StartingMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "How to play"
+
+[connection signal="pressed" from="RetryMenu/VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="RetryMenu/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="StartingMenu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="StartingMenu/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]

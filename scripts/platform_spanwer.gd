@@ -3,9 +3,9 @@ extends Node2D
 @export var platform_scene: PackedScene
 @export var player_path: NodePath
 @export var camera_node: Camera2D
-@export var min_x: float = 100.0
+@export var min_x: float = 0.0
 @export var max_x: float = 620.0
-@export var y_spacing: float = 200.0
+@export var y_spacing: float = 400.0
 
 var player: CharacterBody2D
 var next_spawn_y: float
@@ -51,5 +51,10 @@ func check_player_fall():
 		player_fell()
 
 func player_fell():
+	GlobalScript.score = 0
 	print("Player fell! Game Over.")
+	GlobalScript.MenuStates = "Retry"
 	get_tree().change_scene_to_file("res://scenes/menu_manager.tscn")
+	
+	
+# Make platform eventually smaller, after reaching the minimum make them move from left to right 

@@ -1,19 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://b13vid3b6eote"]
+[gd_scene load_steps=8 format=3 uid="uid://b13vid3b6eote"]
 
 [ext_resource type="PackedScene" uid="uid://dxx30g6l0vc1a" path="res://scenes/fire_fighter.tscn" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://bqgkbu4g3ufla" path="res://scripts/main.gd" id="1_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dwkgsoho2m0xf" path="res://scenes/platform.tscn" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://djr1ifxy10vqj" path="res://assets/Background-Buildings.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://luqygwcw2kno" path="res://scripts/camera_control.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://xv414qrklgdl" path="res://scripts/platform_spanwer.gd" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bsxf7v03sixlw" path="res://scenes/fire.tscn" id="6_tefeu"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("score_label")]
 process_mode = 1
+script = ExtResource("1_o6xl0")
+score_label = NodePath("Control/CanvasLayer/ScoreLabel")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(3, 325)
 offset = Vector2(360, 320)
 script = ExtResource("3_sugp2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="ScoreLabel" type="Label" parent="Control/CanvasLayer"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
 
 [node name="PlatformSpanwer" type="Node2D" parent="." node_paths=PackedStringArray("camera_node")]
 script = ExtResource("4_jyhfs")

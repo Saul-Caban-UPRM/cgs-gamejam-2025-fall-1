@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="CGS-Gamejam-2025-fall-1"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://cuu11u4sqio8e"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+GlobalScript="*res://Gloabal.gd"
 
 [display]
 
