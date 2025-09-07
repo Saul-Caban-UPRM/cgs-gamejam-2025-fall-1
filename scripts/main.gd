@@ -21,3 +21,7 @@ func _process(delta: float) -> void:
 #
 #
 #
+
+
+func _on_fire_hydrants_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

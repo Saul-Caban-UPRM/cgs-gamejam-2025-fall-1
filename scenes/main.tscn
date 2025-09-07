@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b13vid3b6eote"]
+[gd_scene load_steps=11 format=3 uid="uid://b13vid3b6eote"]
 
 [ext_resource type="PackedScene" uid="uid://dxx30g6l0vc1a" path="res://scenes/fire_fighter.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bqgkbu4g3ufla" path="res://scripts/main.gd" id="1_o6xl0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://luqygwcw2kno" path="res://scripts/camera_control.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://xv414qrklgdl" path="res://scripts/platform_spanwer.gd" id="4_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://rkiev2t82fnn" path="res://Sounds/death.wav" id="5_85g3d"]
+[ext_resource type="PackedScene" uid="uid://b5irqerakvr3e" path="res://scenes/fire_hydrants.tscn" id="6_choun"]
 [ext_resource type="PackedScene" uid="uid://bsxf7v03sixlw" path="res://scenes/fire.tscn" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://dhh0ow0ulwoni" path="res://Sounds/EscapeTheFire.mp3" id="8_tipki"]
 
@@ -46,6 +47,7 @@ theme_override_font_sizes/font_size = 36
 position = Vector2(-2, -57)
 script = ExtResource("4_jyhfs")
 platform_scene = ExtResource("2_sugp2")
+fire_hydrant_scene = ExtResource("6_choun")
 player_path = NodePath("../FireFighter")
 camera_node = NodePath("../MainCamera")
 
@@ -68,7 +70,7 @@ motion_mirroring = Vector2(0, 1280)
 position = Vector2(359, 636)
 texture = ExtResource("3_jyhfs")
 
-[node name="FireFighter" parent="." instance=ExtResource("1_0wfyh")]
+[node name="FireFighter" parent="." groups=["player"] instance=ExtResource("1_0wfyh")]
 position = Vector2(361, 850)
 
 [node name="EscapeTheFire" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
