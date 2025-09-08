@@ -2,13 +2,14 @@ extends Area2D
 
 @export var base_growth_speed: float = 50.0         # base speed used for visual growth
 @export var growth_scaling_factor: float = 0.01     # base scalar for visual growth
-@export var fire_rate_multiplier: float = 4.0       # multiply visual growth (increase this to make fire grow faster)
+@export var fire_rate_multiplier: float = 3.5       # multiply visual growth (increase this to make fire grow faster)
 
-@export var collision_growth_multiplier: float = 2.3  # multiply how fast collision extents grow relative to sprite scale
+@export var collision_growth_multiplier: float = 2.0  # multiply how fast collision extents grow relative to sprite scale
 @export var max_visual_scale_y: float = 20.0         # safety clamp for visual scale (avoid runaway)
 @export var min_visual_scale_y: float = 1.0
 
 @export var climb_reduction_factor: float = 0.01    # how much fire recedes when player climbs
+
 
 var player: CharacterBody2D
 var highest_player_y: float
@@ -48,14 +49,6 @@ func _process(delta):
 	sprite_scale.y = clamp(sprite_scale.y, min_visual_scale_y, max_visual_scale_y)
 	$AnimatedSprite2D.scale = sprite_scale
 
-	# --- Reduce fire if player climbs ---
-	if player.global_position.y < highest_player_y:
-		var climb_diff = highest_player_y - player.global_position.y
-		sprite_scale.y = max(min_visual_scale_y, sprite_scale.y - climb_diff * climb_reduction_factor)
-		highest_player_y = player.global_position.y
-		$AnimatedSprite2D.scale = sprite_scale
-
-	# --- Collision extents grow separately (you can tune collision_growth_multiplier) ---
 	# original_extents is half-size. We compute new extents based on sprite scale and the collision multiplier.
 	var new_extents = Vector2(
 		original_extents.x * sprite_scale.x,
@@ -72,11 +65,24 @@ func _process(delta):
 
 	# --- Position fire at screen bottom (using extents correctly) ---
 	var viewport_size = get_viewport().get_visible_rect().size
-	var screen_bottom_y = camera.global_position.y + viewport_size.y * 0.80
+	var screen_bottom_y = camera.global_position.y + viewport_size.y * 0.85
 	# position the Area2D so the bottom of the collision aligns with screen bottom
 	position.y = screen_bottom_y - rect_shape.extents.y
+	
 
+func reduce_fire(amount: float = 1.0):
+	# Reduce the visual scale by a given amount
+	var sprite_scale = $AnimatedSprite2D.scale
+	sprite_scale.y = max(min_visual_scale_y, sprite_scale.y - amount)
+	$AnimatedSprite2D.scale = sprite_scale
 
+	# Update collision shape accordingly
+	var new_extents = Vector2(
+		original_extents.x * sprite_scale.x,
+		original_extents.y * sprite_scale.y * collision_growth_multiplier
+	)
+	rect_shape.extents = new_extents
+	collision_shape_node.position.y = (new_extents.y - original_extents.y)
 func _on_body_entered(body):
 	if body == player:
 		player_fell()
