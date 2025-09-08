@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var gravity = 1500
 
 @export var wrap_margin := 0   # optional padding before wrapping
-
+@onready var anim = $AnimatedSprite2D
 func _physics_process(delta: float) -> void:
 	var direction = 0
 	
@@ -24,6 +24,15 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		$Jump.play()
 		velocity.y = jump_velocity
+
+
+	if direction != 0:
+		anim.play("walking_right")
+		anim.flip_h = direction < 0
+		
+	else:
+		anim.stop()                  
+		anim.frame = 0	
 
 	# Move the character
 	move_and_slide()
