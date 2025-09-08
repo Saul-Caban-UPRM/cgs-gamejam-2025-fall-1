@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ccfbllrf2ivf7" path="res://assets/Platform.png" id="1_ba0x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ba0x2"]
-size = Vector2(129.219, 103.96)
+size = Vector2(99.3432, 47.7307)
 
 [node name="Platform" type="StaticBody2D"]
 position = Vector2(0, -2)
@@ -11,12 +11,12 @@ scale = Vector2(0.414836, 0.94337)
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4.82119, -4.18151)
-scale = Vector2(0.0812217, 0.00812217)
+position = Vector2(-4.82117, -7.65797)
+scale = Vector2(1, 0.1)
 texture = ExtResource("1_ba0x2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.39813, 7.47069)
+position = Vector2(-4.82119, -6.89024)
 scale = Vector2(6.93987, 0.510799)
 shape = SubResource("RectangleShape2D_ba0x2")
 one_way_collision = true
