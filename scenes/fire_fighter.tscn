@@ -1,18 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxx30g6l0vc1a"]
+[gd_scene load_steps=8 format=3 uid="uid://dxx30g6l0vc1a"]
 
 [ext_resource type="Script" uid="uid://buoxalaoq564i" path="res://scripts/fire_fighter.gd" id="1_bsqcs"]
-[ext_resource type="Texture2D" uid="uid://bpdip2li16xhw" path="res://assets/icon.svg" id="1_q8sea"]
+[ext_resource type="Texture2D" uid="uid://cvbmenr34k3fm" path="res://assets/Walking FireFighter.png" id="2_jrj02"]
 [ext_resource type="AudioStream" uid="uid://xt4gjev8pvxr" path="res://Sounds/jump.wav" id="3_jrj02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsqcs"]
 size = Vector2(131, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrj02"]
+atlas = ExtResource("2_jrj02")
+region = Rect2(0, 0, 8670, 13980)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sew3w"]
+atlas = ExtResource("2_jrj02")
+region = Rect2(8670, 0, 8670, 13980)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hxlc"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_jrj02")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_sew3w")
+}],
+"loop": true,
+"name": &"walking_right",
+"speed": 4.0
+}]
 
 [node name="FireFighter" type="CharacterBody2D"]
 script = ExtResource("1_bsqcs")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(4, -5)
-texture = ExtResource("1_q8sea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, -5)
@@ -21,3 +42,10 @@ shape = SubResource("RectangleShape2D_bsqcs")
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jrj02")
 volume_db = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_2hxlc")
+animation = &"walking_right"
+frame_progress = 0.0836897
+speed_scale = 1.5

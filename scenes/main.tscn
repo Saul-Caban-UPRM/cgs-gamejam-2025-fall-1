@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dxx30g6l0vc1a" path="res://scenes/fire_fighter.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://bqgkbu4g3ufla" path="res://scripts/main.gd" id="1_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dwkgsoho2m0xf" path="res://scenes/platform.tscn" id="2_sugp2"]
-[ext_resource type="Texture2D" uid="uid://djr1ifxy10vqj" path="res://assets/Background-Buildings.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://luqygwcw2kno" path="res://scripts/camera_control.gd" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://xv414qrklgdl" path="res://scripts/platform_spanwer.gd" id="4_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://rkiev2t82fnn" path="res://Sounds/death.wav" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bsxf7v03sixlw" path="res://scenes/fire.tscn" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bi78y1xgays86" path="res://assets/Building.png" id="7_85g3d"]
 [ext_resource type="AudioStream" uid="uid://dhh0ow0ulwoni" path="res://Sounds/EscapeTheFire.mp3" id="8_tipki"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("score_label")]
@@ -66,7 +66,8 @@ motion_mirroring = Vector2(0, 1280)
 
 [node name="BackGroundImage" type="Sprite2D" parent="DynamicBackGorund/DynamicBackGroundLayer"]
 position = Vector2(359, 636)
-texture = ExtResource("3_jyhfs")
+scale = Vector2(10, 10)
+texture = ExtResource("7_85g3d")
 
 [node name="FireFighter" parent="." instance=ExtResource("1_0wfyh")]
 position = Vector2(361, 850)
