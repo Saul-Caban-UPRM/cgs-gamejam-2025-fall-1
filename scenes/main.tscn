@@ -71,11 +71,9 @@ motion_scale = Vector2(0, 0.5)
 motion_mirroring = Vector2(0, 1280)
 
 [node name="BackGroundImage" type="Sprite2D" parent="DynamicBackGorund/DynamicBackGroundLayer"]
-
 position = Vector2(361, 640)
 scale = Vector2(7.78495, 10)
 texture = ExtResource("9_choun")
-
 
 [node name="EscapeTheFire" type="AudioStreamPlayer" parent="." groups=["Sounds"]]
 stream = ExtResource("8_tipki")

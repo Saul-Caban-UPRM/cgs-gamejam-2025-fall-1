@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuu11u4sqio8e"]
+[gd_scene load_steps=6 format=3 uid="uid://cuu11u4sqio8e"]
 
 [ext_resource type="Script" uid="uid://28nuocvdave4" path="res://scripts/menu_manager.gd" id="1_q1bkd"]
 [ext_resource type="Texture2D" uid="uid://b7mdb2jyo5s3t" path="res://assets/Use A or left arrow to move left Use D or right to move right.png" id="2_bh0x8"]
+[ext_resource type="Texture2D" uid="uid://ck10adi51h18i" path="res://assets/Exit menu.png" id="2_m2if8"]
 [ext_resource type="AudioStream" uid="uid://yw6y0sbt2v2k" path="res://Sounds/MenuMusic.mp3" id="2_wbwtb"]
+[ext_resource type="Texture2D" uid="uid://bamgc0553gwvn" path="res://assets/Menu Background.png" id="3_rducx"]
 
 [node name="MenuManager" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -17,24 +19,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RetryMenu"]
+[node name="TextureRect" type="TextureRect" parent="RetryMenu"]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("2_m2if8")
+expand_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RetryMenu/TextureRect"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -41.0
-offset_bottom = 41.0
+offset_top = -68.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="retry" type="Button" parent="RetryMenu/VBoxContainer"]
+[node name="retry" type="Button" parent="RetryMenu/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "retry"
+text = "Try Again"
 
-[node name="Exit Game" type="Button" parent="RetryMenu/VBoxContainer"]
+[node name="Exit Game" type="Button" parent="RetryMenu/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Exit game
@@ -49,24 +58,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StartingMenu"]
+[node name="TextureRect" type="TextureRect" parent="StartingMenu"]
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("3_rducx")
+expand_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartingMenu/TextureRect"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -33.0
-offset_bottom = 33.0
+offset_top = -68.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="StartGame" type="Button" parent="StartingMenu/VBoxContainer"]
+[node name="StartGame" type="Button" parent="StartingMenu/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Start Game"
 
-[node name="HowToPlay" type="Button" parent="StartingMenu/VBoxContainer"]
+[node name="HowToPlay" type="Button" parent="StartingMenu/TextureRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "How to play"
@@ -97,8 +113,8 @@ theme_override_font_sizes/font_size = 36
 text = "Return
 "
 
-[connection signal="pressed" from="RetryMenu/VBoxContainer/retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="RetryMenu/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
-[connection signal="pressed" from="StartingMenu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="StartingMenu/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="RetryMenu/TextureRect/VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="RetryMenu/TextureRect/VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="StartingMenu/TextureRect/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="StartingMenu/TextureRect/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="HowToPlay/Return" to="." method="_on_return_pressed"]
